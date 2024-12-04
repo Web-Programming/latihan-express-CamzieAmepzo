@@ -1,25 +1,25 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const mahasiswaSchema = new mongoose.Schema({
-    nama :{
+    nama: {
         type: String,
     },
-    npm : {
+    npm: {
         type: String,
-        require: true,
+        required: true,
     },
-    email : {
+    email: {
         type: String,
-        require: true,
+        required: true,
         unique: true,
     },
-    tanggal_lahir : {
+    tanggal_lahir: {
         type: Date,
     },
-    akitf : {
+    aktif: {
         type: Boolean,
     }
 });
 
-const Mahasiswa = mongoose.model('Mahasiswa', mahasiswaSchema); //(namaModel, namaSchema)
+const Mahasiswa = mongoose.model('Mahasiswa', mahasiswaSchema);
 module.exports = Mahasiswa;
