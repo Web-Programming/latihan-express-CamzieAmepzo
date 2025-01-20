@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-//Memanggil Controller Main
-var mainController = require("../controllers/main");
+const mainController = require("../controllers/main")
+/* GET home page. */
+router.get('/', mainController.index);
 
-//Update router
-router.get('/', mainController.index); //memanggil Main Controller : index
-router.get('/contact', mainController.contact); //memanggil Main Controller : contact
-router.get('/profile', mainController.profile); //memanggil Main Controller : profile
+//buat route ke halaman kontak (/kontak) dengan method get
+router.get("/kontak", mainController.kontak);
+router.get("/kontak3", mainController.kontak);
 
 module.exports = router;

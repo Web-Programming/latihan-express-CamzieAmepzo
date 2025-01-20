@@ -1,37 +1,37 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const housingSchema = new mongoose.Schema({
     idhousing: {
         type: Number,
-        required: true,
+        required: true
     },
     name: {
         type: String,
-        required: true,
+        required: true
     },
     city: {
         type: String,
-        required: true,
+        required: true
     },
     state: {
         type: String,
-        required: true,
+        required: true
     },
     photo: {
         type: String,
-        required: true,
+        required: true
     },
     availableUnits: {
         type: Number,
-        required: true,
+        required: true
     },
-    wifi:{
+    wifi: {
         type: Boolean,
-        required: true,
+        required: true
     },
-    laundry:{
+    laundry: {
         type: Boolean,
-        required: true,
+        required: true
     }
 });
 

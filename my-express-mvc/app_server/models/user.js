@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-// Import module crypto dan jsonwebtoken
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose");
+const crypto =require("crypto");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -13,11 +12,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    hash: String,
+    hash: String, //untuk menyimpan password terenkripsi
     salt: String
 });
 
-// Buat fungsi setPassword untuk mengencrypt plain text password
+//setPassword untuk menampung inputan password berupa plainText, yang kemudian akan di enkripsi dengan metode hash
 userSchema.methods.setPassword = function (password) {
     this.salt = crypto.randomBytes(16).toString('hex');
     this.hash = crypto
@@ -25,7 +24,7 @@ userSchema.methods.setPassword = function (password) {
         .toString('hex');
 }
 
-// Buat fungsi validPassword untuk memavaliasi password plain text dengan password yang terenkripsi
+//validPassword untuk mengecek apakah setPassword sama dengan password yang dari hash
 userSchema.methods.validPassword = function (password) {
     const hash = crypto
         .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')
@@ -33,12 +32,13 @@ userSchema.methods.validPassword = function (password) {
     return this.hash === hash;
 }
 
-// Buat fungsi generateJwt untuk membuat token yang akan digunakan oleh FrontEnd
+//generateJwt untuk membuat expired password
 userSchema.methods.generateJwt = function () {
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 7); // 7 hari
 
     return jwt.sign({
+        //jangan memasukan data privasi
         _id: this._id,
         email: this.email,
         name: this.name,

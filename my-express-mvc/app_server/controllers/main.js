@@ -1,16 +1,10 @@
-//Controller Index
 const index = (req, res) => {
-    res.render("index", {title : "Express MVC"});
-}
+ 	res.render('index', { title: 'Express' }); 
+}; 
 
-//Controller Kontak
-const contact = (req, res) => {
-    res.render("contact", {title : "Ini Halaman Contact"});
-}
+//buat controller untuk halaman kontak
+const kontak = (req, res) => {
+	res.render('kontak', { title: 'Express' });
+};
 
-//Controller Profile
-const profile = (req, res) => {
-    res.render("profile", {title : "Ini Halaman Profile"});
-}
-
-module.exports = {index, contact, profile}; //setiap membuat controller, harus meng-EXPORTS agar dapat digunakan oleh routes
+module.exports = { index, kontak }; 
